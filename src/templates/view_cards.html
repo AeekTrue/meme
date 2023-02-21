@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ deck_name or "All Cards" }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ deck_name or "All Cards" }}</h1>
+    <a href="{{ url_for('card_editor', deck_name=deck_name) }}" class="action">New card</a>
+    <table>
+        <tr>
+            {% if not deck_name %}
+                <th>Deck</th>
+            {% endif %}
+            <th>Front</th>
+            <th>Next review</th>
+            <th></th>
+        </tr>
+        {% for card in cards %}
+            <tr>
+                {% if not deck_name %}
+                    <td>{{ card.deck_name }}</td>
+                {% endif %}
+                <td>{{ card.front }}</td>
+                <td>{{ card.next_review }}</td>
+                <td>
+                    <a class="action" href="{{ url_for('card_editor', card_id=card.id) }}">Edit</a>
+                    <a class="action danger" onclick="deleteCard({{ card.id }})" href="">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No cards :(</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

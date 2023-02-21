@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ "Edit card " + card_id |string if card_id else "New card" }}
+{% endblock %}
+{% block content %}
+    <h1>{{ "Edit card " + card_id |string if card_id else "New card" }}</h1>
+
+    <form action="{{ url_for('card_editor') }}" method="POST">
+        <label for="deck_name">
+            Deck:
+            <select name="deck_name" id="deck_name">
+                <option disabled {{ "selected" if not deck_name }}>Choose deck</option>
+                {% for deck in decks %}
+                    <option {{ "selected" if deck.name == deck_name }} value="{{ deck.name }}">{{ deck.name }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <input type="hidden" name="card_id" value="{{ card_id }}">
+        <label for="front" autofocus>Front: <br> <textarea name="front" id="front"
+                                                      oninput="onEditorInput()">{{ front }}</textarea></label><br>
+        <label for="back">Back: <br><textarea name="back" id="back"
+                                          oninput="onEditorInput()">{{ back }}</textarea></label><br>
+        <input type="submit" value="{{ "Save" if card_id else "Create" }}">
+    </form>
+    <iframe id='preview' src="{{ url_for('card_preview', front='', back='') }}" width="100%" height="640px" style="background: #aaaaaa">
+        Ваш браузер не поддерживает плавающие фреймы!
+    </iframe>
+    <script src="{{ url_for('static', filename='editor.js') }}"></script>
+{% endblock %}

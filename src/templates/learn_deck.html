@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Learn {{ deck_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="card_list">
+        {% for card in cards %}
+            <div class="card" hidden="hidden">
+                <div class="front">
+                    {{ card.front }}
+                </div>
+                <input type="button" value="Show answer" onclick="showAnswer({{ card.id }})">
+                <div class="back" id="back{{ card.id }}" hidden>
+
+                    {{ card.back }}<br>
+                    <input type="button" class="mark" value="AGAIN" onclick="sendResult(0, {{ card.id }})">
+                    <input type="button" class="mark" value="UNREAL" onclick="sendResult(1, {{ card.id }})">
+                    <input type="button" class="mark" value="HARD" onclick="sendResult(2, {{ card.id }})">
+                    <input type="button" class="mark" value="NORMAL" onclick="sendResult(3, {{ card.id }})">
+                    <input type="button" class="mark" value="GOOD" onclick="sendResult(4, {{ card.id }})">
+                    <input type="button" class="mark" value="EASY" onclick="sendResult(5, {{ card.id }})">
+                </div>
+            </div>
+
+        {% else %}
+            <h1>Nothing to learn ;)</h1>
+            <a href="{{ url_for('index') }}">Come back to decks</a>
+        {% endfor %}
+        <div id="learning-complete" hidden="hidden">
+            <h1>Perfect!</h1>
+            You reviewed {{ cards | length }}!
+            <a href="{{ url_for('index') }}">Come back to decks</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='learn.js') }}"></script>
+{% endblock %}
