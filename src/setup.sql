@@ -17,3 +17,9 @@ CREATE TABLE deck(
     id INTEGER PRIMARY KEY,
     name VARCHAR UNIQUE
 );
+
+CREATE TABLE learning(
+card_id INTEGER,
+review_date DATE DEFAULT (DATE('now')),
+score INTEGER
+)

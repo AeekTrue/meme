@@ -110,7 +110,7 @@ class Storage:
 			)
 			return cur.fetchall()
 
-	def update_card(self, grade, card_id):
+	def learn_card(self, grade, card_id):
 		with sql.connect(self.db_path) as con:
 			con.row_factory = namedtuple_factory
 			cur = con.cursor()
@@ -131,6 +131,12 @@ class Storage:
 					next_review = ?
 				WHERE id = ?
 				""", (new_rep, new_easy, new_interval, review_date_str, next_review_str, card_id)
+			)
+			cur.execute(
+				"""
+				INSERT INTO learning(card_id, review_date, score)
+				VALUES (? , ? , ?)
+				""", (card_id, review_date_str, grade)
 			)
 			con.commit()
 
@@ -160,13 +166,16 @@ class Storage:
 	def delete_card(self, card_id):
 		with sql.connect(self.db_path) as con:
 			cur = con.cursor()
+			cur.execute("DELETE FROM learning WHERE card_id = ?", (card_id,))
 			cur.execute("DELETE FROM card WHERE id = ?", (card_id,))
 			con.commit()
 
 	def delete_deck(self, deck_name):
 		with sql.connect(self.db_path) as con:
 			cur = con.cursor()
-			cur.execute("DELETE FROM card WHERE deck_name = ?", (deck_name,))
+			cur.execute("DELETE FROM card WHERE deck_name = ? RETURNING card.id", (deck_name,))
+			cards_to_delete = cur.fetchall()
+			cur.executemany("DELETE FROM learning WHERE card_id= ?", cards_to_delete)
 			cur.execute("DELETE FROM deck WHERE name = ?", (deck_name,))
 			con.commit()
 

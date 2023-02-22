@@ -73,7 +73,7 @@ def handle_answer():
 		print(f'<{card_id}> : {result}')
 		result = int(result)
 		if result >= 3:
-			storage.update_card(result, card_id)
+			storage.learn_card(result, card_id)
 	return 'ok'
 
 
