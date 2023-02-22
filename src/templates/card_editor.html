@@ -3,8 +3,10 @@
     {{ "Edit card " + card_id |string if card_id else "New card" }}
 {% endblock %}
 {% block content %}
-    <h1>{{ "Edit card " + card_id |string if card_id else "New card" }}</h1>
-
+    <h1>{{ "Edit card #" + card_id |string if card_id else "New card" }}</h1>
+    {% if deck_name %}
+        <a class="action" href="{{ url_for('view_deck', deck_name=deck_name) }}">Go to {{ deck_name }} deck.</a>
+    {% endif %}
     <form action="{{ url_for('card_editor') }}" method="POST">
         <label for="deck_name">
             Deck:

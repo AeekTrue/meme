@@ -29,13 +29,14 @@ nav {
     font-size: 1.5em;
 }
 
-a.action {
+a.action, input[type='button'], input[type='submit']{
     color: var(--primary-fg);
     text-decoration: none;
     background: var(--primary-bg);
+    border: none;
     display: inline-block;
-    padding: 5px 15px; /* Поля */
-
+    padding: 5px 15px;
+    margin: 5px 0;
 }
 a.action:hover {
     background: var(--primary-light);
