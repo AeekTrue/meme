@@ -115,7 +115,8 @@ class Storage:
 			con.row_factory = namedtuple_factory
 			cur = con.cursor()
 			card = self.get_card_by_id(card_id)
-			new_rep, new_easy, new_interval = sm2(grade, card.repetition, card.easiness, card.interval)
+			new_rep, new_easy, new_interval = sm2(grade, card.repetition, card.easiness, card.interval,
+												  random_delta=True)
 			review_date = dt.now()
 			review_date_str = review_date.strftime('%Y-%m-%d')
 			next_review = review_date + timedelta(days=new_interval)
