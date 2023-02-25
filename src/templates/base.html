@@ -15,18 +15,23 @@
     </title>
 </head>
 <body>
-    <nav>
+<nav>
 
-        <a class="action" href="{{ url_for('index') }}">Home</a>
-        <a class="action" href="{{ url_for('all_cards') }}">All cards</a>
+    <a class="action" href="{{ url_for('index') }}">Home</a>
+    <a class="action" href="{{ url_for('all_cards') }}">All cards</a>
 
-    </nav>
-    <div class="surface">
+</nav>
+<div id="content" class="surface">
     {% block content %}
         Empty :(
     {% endblock %}
-    </div>
+</div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<footer>
+    <p>Designed by Aeek True</p>
+    <p>Powered by Open Source <br></p>
+    <p><a href="https://github.com/AeekTrue/meme">https://github.com/AeekTrue/meme</a></p>
+</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
