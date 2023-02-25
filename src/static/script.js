@@ -12,7 +12,9 @@ function new_deck() {
 }
 
 function onNewDeckResult(data) {
-    if (!data.success) {
+    if (data.success) {
+
+    } else {
         alert("Deck with the same name already exists!")
     }
 }
@@ -33,11 +35,10 @@ function deleteDeck(deck_name) {
             {
                 deck_name: deck_name
             },
-            callback
+            onDeckDelete
         )
     }
 }
 
-function callback(data) {
-    console.log("Got data: " + data)
+function onDeckDelete(data){
 }
