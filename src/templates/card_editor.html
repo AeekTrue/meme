@@ -19,12 +19,13 @@
         </label><br>
         <input type="hidden" name="card_id" value="{{ card_id }}">
         <label for="front" autofocus>Front: <br> <textarea name="front" id="front"
-                                                      oninput="onEditorInput()">{{ front }}</textarea></label><br>
+                                                           oninput="onEditorInput()">{{ front }}</textarea></label><br>
         <label for="back">Back: <br><textarea name="back" id="back"
-                                          oninput="onEditorInput()">{{ back }}</textarea></label><br>
+                                              oninput="onEditorInput()">{{ back }}</textarea></label><br>
         <input type="submit" value="{{ "Save" if card_id else "Create" }}">
     </form>
-    <iframe id='preview' src="{{ url_for('card_preview', front='', back='') }}" width="100%" height="640px" style="background: #aaaaaa">
+    <iframe id='preview' src="{{ url_for('card_preview', front='', back='') }}" width="100%" height="640px"
+            style="background: #aaaaaa">
         Ваш браузер не поддерживает плавающие фреймы!
     </iframe>
     <script src="{{ url_for('static', filename='editor.js') }}"></script>
