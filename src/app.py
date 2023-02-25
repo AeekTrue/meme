@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request
 
 from storage import Storage
 
@@ -11,7 +11,8 @@ storage = Storage()  # '/home/aeek/dev/meme/src/tmp/'
 @app.route('/')
 def index():
 	decks = storage.get_decks()
-	return render_template("index.html", decks=decks)
+	cards_for_today = sum([deck.to_learn or 0 for deck in decks])
+	return render_template("index.html", decks=decks, cards_for_today=cards_for_today)
 
 
 @app.route('/all_card')
