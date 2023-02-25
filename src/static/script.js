@@ -42,3 +42,7 @@ function deleteDeck(deck_name) {
 
 function onDeckDelete(data){
 }
+
+function callback(data) {
+
+}
