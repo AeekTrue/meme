@@ -98,3 +98,10 @@ def delete_deck():
 	deck_name = request.form.get('deck_name')
 	storage.delete_deck(deck_name)
 	return 'ok'
+
+
+@app.route('/statistics')
+def statistics():
+	days = storage.get_cards_count_to_learn_by_days()
+	print(days)
+	return render_template('statistics.html', days=days)

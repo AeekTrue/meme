@@ -63,7 +63,11 @@ class Storage:
 			cur = con.cursor()
 			cur.execute(
 				"""
-				SELECT name, count(c.id) cards, sum(c.next_review <= date('now')) to_learn
+				SELECT 
+					name,
+					count(c.id) cards,
+					sum(c.next_review <= date('now')) to_learn, 
+					sum(c.created == date('now')) new
 				from deck d
 					left join card c on d.name = c.deck_name
 				GROUP BY d.name
@@ -174,11 +178,20 @@ class Storage:
 	def delete_deck(self, deck_name):
 		with sql.connect(self.db_path) as con:
 			cur = con.cursor()
+			cur.execute("DELETE FROM deck WHERE name = ?", (deck_name,))
 			cur.execute("DELETE FROM card WHERE deck_name = ? RETURNING card.id", (deck_name,))
 			cards_to_delete = cur.fetchall()
 			cur.executemany("DELETE FROM learning WHERE card_id= ?", cards_to_delete)
-			cur.execute("DELETE FROM deck WHERE name = ?", (deck_name,))
 			con.commit()
+
+	def get_cards_count_to_learn_by_days(self):
+		with sql.connect(self.db_path) as con:
+			con.row_factory = namedtuple_factory
+			cur = con.cursor()
+			cur.execute("""
+			SELECT next_review, count(*) n FROM card GROUP BY next_review
+			""")
+			return cur.fetchall()
 
 
 def test_fill(s: Storage):

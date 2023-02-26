@@ -18,7 +18,12 @@
 <nav>
 
     <a class="action" href="{{ url_for('index') }}"><span class="material-symbols-outlined">home</span>Home</a>
-    <a class="action" href="{{ url_for('all_cards') }}"><span class="material-symbols-outlined">list_alt</span>All cards</a>
+    <a class="action" href="{{ url_for('all_cards') }}">
+        <span class="material-symbols-outlined">list_alt</span>All cards
+    </a>
+    <a class="action" href="{{ url_for('statistics') }}">
+        <span class="material-symbols-outlined">monitoring</span>Statistics
+    </a>
 
 </nav>
 <div id="content" class="surface">

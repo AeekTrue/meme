@@ -10,7 +10,7 @@
                 <td>
                     {{ deck.name }}
                 </td>
-                <td>{{ deck.to_learn or 0 }} / {{ deck.cards }}</td>
+                <td>{{ deck.to_learn or 0 }} / {{ deck.new or 0}} / {{ deck.cards }}</td>
                 <td>
                     <a class="action" href="{{ url_for('card_editor', deck_name=deck.name) }}">
                         <span class="material-symbols-outlined">add</span>
