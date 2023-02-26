@@ -10,7 +10,8 @@ CREATE TABLE card(
     `interval` INTEGER DEFAULT 1,
     last_review DATE DEFAULT "1970-01-01",
     next_review DATE DEFAULT (DATE('now')),
-    deck_name VARCHAR
+    deck_name VARCHAR,
+    created DATE DEFAULT (DATE('now'))
 );
 
 CREATE TABLE deck(
