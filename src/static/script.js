@@ -1,4 +1,3 @@
-
 function new_deck() {
     let name = prompt('Enter deck name:', '')
     if (name.length > 0) {
@@ -20,12 +19,15 @@ function onNewDeckResult(data) {
 }
 
 function deleteCard(card_id) {
-    $.post('/delete_card',
-        {
-            card_id: card_id
-        },
-        callback
-    )
+    let status = confirm("Do you want to delete card?")
+    if (status) {
+        $.post('/delete_card',
+            {
+                card_id: card_id
+            },
+            callback
+        )
+    }
 }
 
 function deleteDeck(deck_name) {
@@ -40,7 +42,7 @@ function deleteDeck(deck_name) {
     }
 }
 
-function onDeckDelete(data){
+function onDeckDelete(data) {
 }
 
 function callback(data) {
