@@ -31,16 +31,20 @@ nav {
     font-size: 1.5em;
 }
 
-a.action, input[type='button'], input[type='submit']{
+span.material-symbols-outlined {
+    vertical-align: middle;
+}
+
+a.action, input[type='button'], input[type='submit'], button{
     color: var(--primary-fg);
     text-decoration: none;
     background: var(--primary-bg);
     border: none;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 5px 5px;
 }
 
-input[type='submit'] {
+button {
     font-family: inherit;
     font-size: 1em;
 }

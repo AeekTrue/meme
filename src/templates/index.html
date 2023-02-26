@@ -3,7 +3,7 @@
 {% block content %}
     <h3>Cards for today: {{ cards_for_today }}</h3>
     <h1>List of decks:</h1>
-    <a href="" class="action" onclick="new_deck()">New deck</a>
+    <a href="" class="action" onclick="new_deck()"><span class="material-symbols-outlined">add</span>New deck</a>
     <table>
         {% for deck in decks %}
             <tr>
@@ -12,10 +12,18 @@
                 </td>
                 <td>{{ deck.to_learn or 0 }} / {{ deck.cards }}</td>
                 <td>
-                    <a class="action" href="{{ url_for('card_editor', deck_name=deck.name) }}">+</a>
-                    <a class="action" href="{{ url_for('learn_deck', deck_name=deck.name) }}">Learn</a>
-                    <a class="action" href="{{ url_for('view_deck', deck_name=deck.name) }}">View</a>
-                    <a href="" class="action danger" onclick="deleteDeck('{{ deck.name }}')">Delete</a>
+                    <a class="action" href="{{ url_for('card_editor', deck_name=deck.name) }}">
+                        <span class="material-symbols-outlined">add</span>
+                    </a>
+                    <a class="action" href="{{ url_for('learn_deck', deck_name=deck.name) }}"> <span
+                            class="material-symbols-outlined">school</span>
+                    </a>
+                    <a class="action" href="{{ url_for('view_deck', deck_name=deck.name) }}"> <span
+                            class="material-symbols-outlined">visibility</span>
+                    </a>
+                    <a href="" class="action danger" onclick="deleteDeck('{{ deck.name }}')">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
                 </td>
             </tr>
         {% endfor %}

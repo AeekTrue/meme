@@ -7,7 +7,7 @@
     {% if deck_name %}
         <a class="action" href="{{ url_for('view_deck', deck_name=deck_name) }}">Go to {{ deck_name }} deck.</a>
     {% endif %}
-    <form action="{{ url_for('card_editor') }}" method="POST">
+    <form action="{{ url_for('card_editor') }}" method="POST" id="edit_card_form">
         <label for="deck_name">
             Deck: <br>
             <select name="deck_name" id="deck_name">
@@ -31,7 +31,7 @@
 
         </div>
         <br>
-        <input type="submit" value="{{ "Save" if card_id else "Create" }}">
+        <button form="edit_card_form"><span class="material-symbols-outlined">save</span>Save</button>
     </form>
     Preview:
     <iframe id='preview' src="{{ url_for('card_preview', front='', back='') }}" width="100%" height="640px"
