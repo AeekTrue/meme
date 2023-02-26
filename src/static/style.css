@@ -68,7 +68,9 @@ td, th {
     padding: .5em;
     border: 1px black solid;
 }
-
+abbr {
+    text-decoration: none;
+}
 form {
     margin: 1em 0;
 }
