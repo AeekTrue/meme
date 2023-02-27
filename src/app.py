@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from storage import Storage
 
 app = Flask(__name__)
+print('LOG OK!')
 storage = Storage()  # '/home/aeek/dev/meme/src/tmp/'
 
 

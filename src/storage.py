@@ -41,6 +41,7 @@ class Storage:
 
 	def setup(self):
 		script_path = Path(Path(__file__).parent, 'setup.sql')
+		print('IN SETUP!!!')
 		with open(script_path) as f:
 			script = f.read()
 			with sql.connect(self.db_path) as con:
