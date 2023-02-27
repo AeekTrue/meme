@@ -179,8 +179,9 @@ class Storage:
 		with sql.connect(self.db_path) as con:
 			cur = con.cursor()
 			cur.execute("DELETE FROM deck WHERE name = ?", (deck_name,))
-			cur.execute("DELETE FROM card WHERE deck_name = ? RETURNING card.id", (deck_name,))
+			cur.execute("SELECT card.id FROM card WHERE deck_name = ?", (deck_name,))
 			cards_to_delete = cur.fetchall()
+			cur.execute("DELETE FROM card WHERE deck_name = ?", (deck_name,))
 			cur.executemany("DELETE FROM learning WHERE card_id= ?", cards_to_delete)
 			con.commit()
 
