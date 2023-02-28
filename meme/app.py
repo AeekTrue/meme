@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from storage import Storage
+from .storage import Storage
 
 app = Flask(__name__)
 storage = Storage()  # '/home/aeek/dev/meme/src/tmp/'

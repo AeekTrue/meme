@@ -3,8 +3,9 @@ import sqlite3 as sql
 from json import load
 from pathlib import Path
 from collections import namedtuple
-from sm2_algo import sm2
 from datetime import datetime as dt, timedelta
+
+from .sm2_algo import sm2
 
 
 def namedtuple_factory(cursor, row):
