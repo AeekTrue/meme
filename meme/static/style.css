@@ -35,7 +35,7 @@ span.material-symbols-outlined {
     vertical-align: middle;
 }
 
-a.action, input[type='button'], input[type='submit'], button{
+.action, input[type='button'], input[type='submit'], button{
     color: var(--primary-fg);
     text-decoration: none;
     background: var(--primary-bg);
@@ -51,10 +51,11 @@ button {
 a.action:hover, input[type='button']:hover, input[type='submit']:hover{
     background: var(--primary-light);
 }
-a.danger {
+
+.danger {
     background: var(--error-color);
 }
-a.danger:hover {
+.danger:hover {
     background: var(--error-light);
 }
 

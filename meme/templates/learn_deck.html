@@ -11,16 +11,16 @@
                     {{ card.front }}
                 </div>
                 <br>
-                <input type="button" value="Show answer" onclick="showAnswer({{ card.id }})"><br><br>
+                <button onclick="showAnswer({{ card.id }})">Show answer</button><br><br>
                 <div class="back" id="back{{ card.id }}" hidden>
 
-                    {{ card.back }}<br>
-                    <input type="button" class="mark" value="AGAIN" onclick="sendResult(0, {{ card.id }})">
-                    <input type="button" class="mark" value="UNREAL" onclick="sendResult(1, {{ card.id }})">
-                    <input type="button" class="mark" value="HARD" onclick="sendResult(2, {{ card.id }})">
-                    <input type="button" class="mark" value="NORMAL" onclick="sendResult(3, {{ card.id }})">
-                    <input type="button" class="mark" value="GOOD" onclick="sendResult(4, {{ card.id }})">
-                    <input type="button" class="mark" value="EASY" onclick="sendResult(5, {{ card.id }})">
+                    {{ card.back }}<br><br>
+                    <button class="mark danger" onclick="sendResult(0, {{ card.id }})">AGAIN</button>
+                    <button class="mark danger" onclick="sendResult(1, {{ card.id }})">UNREAL</button>
+                    <button class="mark danger" onclick="sendResult(2, {{ card.id }})">HARD</button>
+                    <button class="mark" onclick="sendResult(3, {{ card.id }})">NORMAL</button>
+                    <button class="mark" onclick="sendResult(4, {{ card.id }})">GOOD</button>
+                    <button class="mark" onclick="sendResult(5, {{ card.id }})">EASY</button>
                 </div>
             </div>
 
