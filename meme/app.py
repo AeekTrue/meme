@@ -47,6 +47,7 @@ def card_editor():
 			deck_name = request.args.get('deck_name')
 			return render_template("card_editor.html", deck_name=deck_name, decks=decks)
 	elif request.method == 'POST':
+		create_new = request.args.get('create_new')
 		deck_name = request.form.get('deck_name')
 		front = request.form.get('front')
 		back = request.form.get('back')
@@ -55,8 +56,12 @@ def card_editor():
 			storage.edit_card(card_id, deck_name, front, back)
 		else:
 			card_id = storage.create_card(deck_name, front, back)
-		return render_template("card_editor.html", deck_name=deck_name, decks=decks, card_id=card_id, front=front,
-							   back=back)
+
+		if create_new:
+			return render_template("card_editor.html", deck_name=deck_name, decks=decks)
+		else:
+			return render_template("card_editor.html", deck_name=deck_name, decks=decks, card_id=card_id, front=front,
+								   back=back)
 
 
 @app.route('/new_deck', methods=["POST"])

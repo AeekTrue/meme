@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-    {{ "Edit card " + card_id |string if card_id else "New card" }}
+    {{ "Edit card #" + card_id |string if card_id else "New card" }}
 {% endblock %}
 {% block content %}
     <h1>{{ "Edit card #" + card_id |string if card_id else "New card" }}</h1>
     {% if deck_name %}
-        <a class="action" href="{{ url_for('view_deck', deck_name=deck_name) }}">Go to {{ deck_name }} deck.</a>
+        <a class="action" href="{{ url_for('view_deck', deck_name=deck_name) }}">
+            <span class="material-symbols-outlined">arrow_back</span>Go to {{ deck_name }} deck.
+        </a>
     {% endif %}
     <form action="{{ url_for('card_editor') }}" method="POST" id="edit_card_form">
         <label for="deck_name">
@@ -32,6 +34,9 @@
         </div>
         <br>
         <button form="edit_card_form"><span class="material-symbols-outlined">save</span>Save</button>
+        <button form="edit_card_form" formaction="{{ url_for('card_editor', create_new=True) }}"><span
+                class="material-symbols-outlined">add</span>Create another one
+        </button>
     </form>
     Preview:
     <iframe id='preview' src="{{ url_for('card_preview', front='', back='') }}" width="100%" height="640px"
