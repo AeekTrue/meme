@@ -9,14 +9,14 @@ frontField.addEventListener('keyup', onHotKey, frontField)
 backField.addEventListener('keyup', onHotKey, backField)
 
 function init() {
-    frontField.innerText = frontForm.value
-    backField.innerText = backForm.value
+    frontField.innerHTML = frontForm.value
+    backField.innerHTML = backForm.value
     onEditorInput()
 }
 
 function onEditorInput() {
-    frontForm.value = frontField.innerText
-    backForm.value = backField.innerText
+    frontForm.value = frontField.innerHTML
+    backForm.value = backField.innerHTML
     previewer.src = "/card_preview?" + "front=" + encodeURIComponent(frontForm.value) + "&back=" + encodeURIComponent(backForm.value)
 }
 

@@ -7,6 +7,7 @@
     <div class="card_list">
         {% for card in cards %}
             <div class="card" hidden="hidden">
+                <a href="{{ url_for('card_editor', card_id=card.id) }}">Edit card</a>
                 <div class="front">
                     {{ card.front }}
                 </div>

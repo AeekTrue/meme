@@ -35,6 +35,9 @@ span.material-symbols-outlined {
     vertical-align: middle;
 }
 
+img {
+    max-width: 100%;
+}
 .action, input[type='button'], input[type='submit'], button{
     color: var(--primary-fg);
     text-decoration: none;
